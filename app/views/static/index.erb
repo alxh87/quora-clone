@@ -1,2 +1,7 @@
-<h1>Hello World</h1>
-<p>See Me in views/static/index.html.erb</p>
+
+
+<% if logged_in? %>
+	<% redirect "/homepage" %> 
+<% else %>
+	<% redirect "/login" %> 
+<% end %>

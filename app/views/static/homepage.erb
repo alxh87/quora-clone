@@ -1,0 +1,34 @@
+
+<h1>Hello homepage</h1>
+
+
+current user <%= current_user.email %>
+
+<br>
+<a href="/profile">view profile</a>
+
+
+hey there <%= current_user.email %>
+your name is <%= current_user.name %>
+
+<form method="post" action="/logout">
+	<input type="submit" value="Log out">
+</form>
+<br><br>
+<form method="post" action="/ask_question">
+	<input type="text" name="user[email]" placeholder="email">
+	<br>
+	<input type="submit" value="Ask Question">
+</form>
+
+<% User.all.each do |x| %>
+	<a href="/users/<%=x.id%>">
+	<%= x.id %>
+	<%= x.name %>
+	email is <%= x.email %></a>
+	<br>
+	<% end %>
+
+
+
+<h1>Questions</h1>

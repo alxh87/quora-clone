@@ -4,9 +4,11 @@ ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 # Perform requiring gem that we need
 ######################################################################
 	# basic
+require 'bcrypt'
 require 'rubygems'
 require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 require 'pathname'
+require 'byebug'
 
 	# database
 require 'pg'

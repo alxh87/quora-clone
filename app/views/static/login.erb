@@ -1,0 +1,38 @@
+<div id="bg-container">
+	<div id="bg-img"></div>	
+</div>
+
+
+<section class="container">
+<div id="loginlogo"></div>	
+
+	<h2 class="tagline">The best answer to any question</h2>
+<div class="jumbotron">
+
+
+<h2>Sign up for account</h2>
+
+<form method="post" action="/signup">
+	<input type="text" name="user[name]" placeholder="Name">
+	<br>
+	<input type="text" name="user[email]" placeholder="Email">
+	<br>
+	<input type="password" name="user[password]" placeholder="Password">
+	
+	<input type="submit" class="button" value="Sign up">
+
+</form>
+</div>
+</section>
+
+<%= @error if @error %>
+
+
+<h2>LOGIN</h2>
+<form method="post" action="/login">
+	<input type="text" name="user[email]" placeholder="email">
+	<br>
+	<input type="password" name="user[password]" placeholder="password">
+	
+	<input type="submit" class="button" value="Log in">
+</form>
