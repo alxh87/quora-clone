@@ -1,0 +1,26 @@
+qedit
+<br>
+<%= @question.id %>
+	title is <%= @question.title %>
+	subject is <%= @question.subject %>
+	userid is <%= @question.user_id %>
+
+	<br>
+
+
+
+	edit here
+
+
+
+<form method="post" action="/questions/<%=@question.id%>/update">
+	<input type="hidden" name="_method" value="put">
+	<input type="hidden" value= <%= @question.id %> name="question[id]">
+	<input type="hidden" value= <%= current_user.id %> name="question[user_id]">
+	<input type="text" name="question[title]" placeholder="title">
+	<br>
+	<input type="text" name="question[subject]" placeholder="subject">
+	<br>
+	<input type="submit" value="Edit Question">
+</form>
+

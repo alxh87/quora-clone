@@ -1,7 +1,48 @@
 
+<h1>Hello homepage</h1>
 
-<% if logged_in? %>
-	<% redirect "/homepage" %> 
-<% else %>
-	<% redirect "/login" %> 
+
+current user <%= current_user.email %>
+current user id <%= current_user.id %>
+
+<br>
+<a href="/users/profile">view your profile</a>
+
+
+hey there <%= current_user.email %>
+your name is <%= current_user.name %>
+
+<form method="post" action="/logout">
+	<input type="submit" value="Log out">
+</form>
+<br><br>
+<form method="post" action="/questions">
+	<input type="hidden" value= <%= current_user.id %> name="question[user_id]">
+	<input type="text" name="question[title]" placeholder="title">
+	<br>
+	<input type="text" name="question[subject]" placeholder="subject">
+	<br>
+	<input type="submit" value="Askasd Question">
+</form>
+
+<% User.all.each do |x| %>
+	<a href="/users/<%=x.id%>">
+	<%= x.id %>
+	<%= x.name %>
+	email is <%= x.email %></a>
+	<br>
+	<% end %>
+
+
+
+<a href="/questions"><h1>Questions</h1></a>
+
+<% Question.all.each do |x| %>
+	<a href="/questions/<%=x.id%>">
+	<%= x.id %>
+	title is <%= x.title %>
+	subject is <%= x.subject %>
+	userid is <%= x.user_id %>
+	</a>
+	<br>
 <% end %>

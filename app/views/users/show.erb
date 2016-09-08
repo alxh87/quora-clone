@@ -1,0 +1,32 @@
+
+
+<h2>Welcome to user page</h2>
+
+
+<h3>This user is id <%= @user.id %></h3>
+
+<h3>Email is <%= @user.email %></h3>
+<h3>Name is <%= @user.name %></h3>
+
+QUESTIONS
+
+<% @user.questions.each do |x| %>
+	<a href="/questions/<%=x.id%>">
+	<%= x.id %>
+	title is <%= x.title %>
+	subject is <%= x.subject %>
+	userid is <%= x.user_id %>
+	</a>
+	<br>
+<% end %>
+
+ANSWERS
+
+<% @user.answers.each do |x| %>
+	<a href="/questions/<%=x.id%>">
+	<%= x.id %>
+	answer is <%= x.answer %>
+	
+	</a>
+	<br>
+<% end %>

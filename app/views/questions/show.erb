@@ -1,0 +1,40 @@
+qshow
+
+	
+	<%= @question.id %>
+	title is <%= @question.title %>
+	subject is <%= @question.subject %>
+	userid is <%= @question.user_id %>
+	</a>
+	<br>
+
+	<a href="/questions/<%=@question.id%>/edit">Edit</a>
+	<br>
+	<a href="/questions/<%=@question.id%>/delete">Delete</a>
+
+<br>
+
+<%if logged_in?%>
+
+<form method="post" action="/answer">
+	<input type="hidden" value= <%= current_user.id %> name="answer[user_id]">
+	<input type="hidden" value= <%= @question.id %> name="answer[question_id]">
+	<input type="text" name="answer[answer]" placeholder="Answer Here">
+	<br>
+	<input type="submit" value="Answer Question">
+</form>
+<%end%>
+
+<%= params[:error] if params[:error] %>
+
+ANSWERS
+
+<% @question.answers.each  do |x| %>
+	
+	<%= x.id %>
+	<%= x.answer %>
+	<%= x.user_id %>
+	<a href="/answers/<%=x.id%>/edit">EDIT ANSWER
+	</a>
+	<br>
+<% end %>

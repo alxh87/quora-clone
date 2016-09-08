@@ -1,0 +1,32 @@
+edit answer
+<br>
+question id is <%= @answer.question_id %>
+
+
+	title is <%= Question.find(@answer.question_id).title %>
+
+	<br>
+answer details
+<%= @answer.id %>
+	answer is <%= @answer.answer %>
+	
+	edit here
+
+
+
+
+<form method="post" action="/answers/<%=@answer.id%>/update">
+	<input type="hidden" name="_method" value="put">
+	<input type="hidden" value= <%= @answer.id %> name="answer[id]">
+	<input type="hidden" value= <%= @answer.question_id %> name="answer[question_id]">
+	<input type="hidden" value= <%= current_user.id %> name="answer[user_id]">
+	<input type="text" name="answer[answer]" placeholder="New Answer">
+	<br>
+	<input type="submit" value="Edit Answer">
+</form>
+
+
+<br>
+<br>
+
+<a class="button" href="/answers/<%=@answer.id%>/delete">DELETE THIS ANSWER</a>

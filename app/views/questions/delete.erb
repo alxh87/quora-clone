@@ -1,0 +1,22 @@
+qedit
+<br>
+<%= @question.id %>
+	title is <%= @question.title %>
+	subject is <%= @question.subject %>
+	userid is <%= @question.user_id %>
+
+	<br>
+
+
+
+	delete here
+ARE YOU SURE!!!
+
+
+<form method="post" action="/questions/<%=@question.id%>">
+	<input type="hidden" name="_method" value="delete">
+	<input type="hidden" value= <%= @question.id %> name="question[id]">
+	<br>
+	<input type="submit" value="Delete Question">
+</form>
+

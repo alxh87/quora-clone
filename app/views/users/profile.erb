@@ -1,0 +1,31 @@
+
+
+<h2>Welcome to profile page</h2>
+
+
+<h3>YOU ARE<%= current_user.id %></h3>
+
+<h3>YOUR Email is <%= current_user.email %></h3>
+<h3>YOUR Name is <%= current_user.name %></h3>
+
+QUESTIONS
+
+<% current_user.questions.each do |x| %>
+	<a href="/questions/<%=x.id%>">
+	<%= x.id %>
+	title is <%= x.title %>
+	subject is <%= x.subject %>
+	userid is <%= x.user_id %>
+	</a>
+	<br>
+<% end %>
+
+ANSWERS
+
+<% current_user.answers.each do |x| %>
+	<a href="/questions/<%=x.id%>">
+	<%= x.id %>
+	answer is <%= x.answer %>
+</a>
+	<br>
+<% end %>

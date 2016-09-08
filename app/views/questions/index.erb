@@ -1,0 +1,11 @@
+qindex
+
+<% Question.all.each do |x| %>
+	<a href="/questions/<%=x.id%>">
+	<%= x.id %>
+	title is <%= x.title %>
+	subject is <%= x.subject %>
+	userid is <%= x.user_id %>
+	</a>
+	<br>
+<% end %>

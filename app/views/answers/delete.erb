@@ -1,0 +1,24 @@
+edit answer
+<br>
+question id is <%= @answer.question_id %>
+
+
+	title is <%= Question.find(@answer.question_id).title %>
+
+	<br>
+answer details
+<%= @answer.id %>
+	answer is <%= @answer.answer %>
+
+
+	delete here
+ARE YOU SURE!!!
+
+
+<form method="post" action="/answers/<%=@answer.id%>">
+	<input type="hidden" name="_method" value="delete">
+	<input type="hidden" value= <%= @answer.id %> name="answer[id]">
+	<br>
+	<input type="submit" value="Delete Answer">
+</form>
+
