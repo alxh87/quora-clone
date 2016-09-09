@@ -1,19 +1,25 @@
 
 get "/questions" do
 	if logged_in?
+		@questions=Question.all
 		erb :"questions/index"
 	else
 		erb :"static/login"
 	end
 end
 
-# get "/questions/new" do
-# 	erb :"/questions/new"
-# end
+get "/questions/new" do
+	if logged_in?
+		erb :"/questions/new"
+	else
+		erb :"static/login"
+	end	
+end
 
 post "/questions" do
 	if logged_in?
 		Question.create(params[:question])
+		@questions=Question.all
 		erb :"/questions/index"
 	else
 		erb :"static/login"

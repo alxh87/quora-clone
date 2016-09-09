@@ -1,6 +1,6 @@
 
 post "/answer" do
-	answer=Answer.create(params[:answer])
+	answer=Answer.new(params[:answer])
 	if answer.save
 		redirect "/questions/#{(params[:answer][:question_id])}"
 	else

@@ -1,0 +1,11 @@
+
+	<!-- All Users Page -->
+
+<div class="container">
+	<h1>Users</h1>
+	<% User.all.each do |x| %>
+
+	<h3><small><a href="/users/<%=x.id%>">
+			<%= x.name %> <%= x.email %></a></small></h3>
+	<% end %>
+</div>

@@ -1,16 +1,44 @@
-qshow
 
+
+<div class="container">
 	
-	<%= @question.id %>
-	title is <%= @question.title %>
-	subject is <%= @question.subject %>
-	userid is <%= @question.user_id %>
-	</a>
-	<br>
 
+	<h3><a href="/questions/<%=@question.id%>">
+		<%= @question.id %><%= @question.title %></a> Votecount: <%= @question.votecount %></h3>
+	<h3><small>Posted by <%= @question.user.name %></small></h3>
+
+	<form method="post" action="/question_votes">
+		<input type="hidden" value= <%= current_user.id %> name="question_vote[user_id]">
+		<input type="hidden" value= <%= @question.id %> name="question_vote[question_id]">
+		<input type="hidden" value= 1 name="question_vote[vote]">
+		<br>
+		<input type="submit" class="btn btn-success" value="Upvote">
+	</form>
+
+	<form method="post" action="/question_votes">
+		<input type="hidden" value= <%= current_user.id %> name="question_vote[user_id]">
+		<input type="hidden" value= <%= @question.id %> name="question_vote[question_id]">
+		<input type="hidden" value= -1 name="question_vote[vote]">
+		<br>
+		<input type="submit" class="btn btn-warning" value="Downvote">
+	</form>
+
+
+	<% if @question.user_id==current_user.id %>
 	<a href="/questions/<%=@question.id%>/edit">Edit</a>
 	<br>
 	<a href="/questions/<%=@question.id%>/delete">Delete</a>
+
+
+	<% end %>
+		
+
+
+		
+		<p><%= @question.body %></p><br>
+	
+
+
 
 <br>
 
@@ -19,7 +47,7 @@ qshow
 <form method="post" action="/answer">
 	<input type="hidden" value= <%= current_user.id %> name="answer[user_id]">
 	<input type="hidden" value= <%= @question.id %> name="answer[question_id]">
-	<input type="text" name="answer[answer]" placeholder="Answer Here">
+	<input type="text" name="answer[answer]" placeholder="Post Answer">
 	<br>
 	<input type="submit" value="Answer Question">
 </form>
@@ -28,13 +56,36 @@ qshow
 <%= params[:error] if params[:error] %>
 
 ANSWERS
+<br>
 
 <% @question.answers.each  do |x| %>
-	
-	<%= x.id %>
+	<form method="post" action="/answer_votes">
+		<input type="hidden" value= <%= current_user.id %> name="answer_vote[user_id]">
+		<input type="hidden" value= <%= x.id %> name="answer_vote[answer_id]">
+		<input type="hidden" value= 1 name="answer_vote[vote]">
+		<br>
+		<input type="submit" class="btn btn-success" value="Upvote">
+	</form>
+
+	<form method="post" action="/answer_votes">
+		<input type="hidden" value= <%= current_user.id %> name="answer_vote[user_id]">
+		<input type="hidden" value= <%= x.id %> name="answer_vote[answer_id]">
+		<input type="hidden" value= -1 name="answer_vote[vote]">
+		<br>
+		<input type="submit" class="btn btn-warning" value="Downvote">
+	</form>
+	ID: <%= x.id %>
+	Votecount: <%= x.votecount %>
+	<br>
 	<%= x.answer %>
-	<%= x.user_id %>
-	<a href="/answers/<%=x.id%>/edit">EDIT ANSWER
-	</a>
+
+	<br>
+	<%= x.user_id %> <%= x.user.name %>
+
+	<% if x.user_id==current_user.id %>
+		<a href="/answers/<%=x.id%>/edit">EDIT ANSWER</a>
+	<% end %>
 	<br>
 <% end %>
+
+</div>

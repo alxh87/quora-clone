@@ -7,4 +7,13 @@ class Question < ActiveRecord::Base
 
 	validates :title, presence: true
 	validates :user_id, presence: true
+
+	def votecount
+		total=0
+		QuestionVote.where(question_id: self.id).all.each do |x|
+			total+=x.vote			
+		end
+		total
+	end
+
 end

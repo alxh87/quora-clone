@@ -8,5 +8,12 @@ class Answer < ActiveRecord::Base
 	validates :user_id, presence: true
 	validates :question_id, presence: true
 
+	def votecount
+		total=0
+		AnswerVote.where(answer_id: self.id).all.each do |x|
+			total+=x.vote			
+		end
+		total
+	end
 
 end

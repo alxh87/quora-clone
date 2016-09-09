@@ -12,6 +12,7 @@ gem 'thin'
 gem 'byebug'
 #add bcrypt
 gem 'bcrypt'
+gem 'will_paginate'
 
 # Adding ActiveRecord and Database Components
 gem 'activerecord'

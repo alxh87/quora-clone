@@ -2,7 +2,7 @@ qedit
 <br>
 <%= @question.id %>
 	title is <%= @question.title %>
-	subject is <%= @question.subject %>
+	body is <%= @question.body %>
 	userid is <%= @question.user_id %>
 
 	<br>
@@ -19,7 +19,7 @@ qedit
 	<input type="hidden" value= <%= current_user.id %> name="question[user_id]">
 	<input type="text" name="question[title]" placeholder="title">
 	<br>
-	<input type="text" name="question[subject]" placeholder="subject">
+	<input type="text" name="question[body]" placeholder="body">
 	<br>
 	<input type="submit" value="Edit Question">
 </form>
