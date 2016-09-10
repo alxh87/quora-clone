@@ -1,12 +1,14 @@
 
 post "/answer" do
+
 	answer=Answer.new(params[:answer])
 	if answer.save
-		redirect "/questions/#{(params[:answer][:question_id])}"
+		return {answer: answer, user: answer.user}.to_json
+		# redirect "/questions/#{(params[:answer][:question_id])}"
 	else
-		@error = answer.errors.full_messages #@error allows html to read the var
-		@question=Question.find(params[:answer][:question_id])
-		redirect "/questions/#{(params[:answer][:question_id])}?error=#{@error}"
+		return answer.errors.full_messages.to_json #@error allows html to read the var
+		# @question=Question.find(params[:answer][:question_id])
+		# redirect "/questions/#{(params[:answer][:question_id])}?error=#{@error}"
 	end
 
 
