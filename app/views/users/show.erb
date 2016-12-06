@@ -1,32 +1,45 @@
 
 
-<h2>Welcome to user page</h2>
+<div class="col-xs-3">
+	<%= erb :"static/leftsidebar", layout: false %>
+</div>
+
+<div class="col-xs-7">
 
 
-<h3>This user is id <%= @user.id %></h3>
+	<div class="container">
 
-<h3>Email is <%= @user.email %></h3>
-<h3>Name is <%= @user.name %></h3>
+		<h1><%= @user.name %></h1>
 
-QUESTIONS
+		<h2><%= @user.email %></h2>
 
-<% @user.questions.each do |x| %>
-	<a href="/questions/<%=x.id%>">
-	<%= x.id %>
-	title is <%= x.title %>
-	body is <%= x.body %>
-	userid is <%= x.user_id %>
-	</a>
-	<br>
-<% end %>
 
-ANSWERS
+		<h3>QUESTIONS</h3>
 
-<% @user.answers.each do |x| %>
-	<a href="/questions/<%=x.id%>">
-	<%= x.id %>
-	answer is <%= x.answer %>
-	
-	</a>
-	<br>
-<% end %>
+		<% @user.questions.each do |x| %>
+		<div class="question_title">
+			<%= erb :"questions/question_title", locals: { x: x }, layout: false %>
+					<a href="/questions/<%=x.id%>/edit">Edit</a>
+					<a href="/questions/<%=x.id%>/delete">Delete</a>
+		</div>
+		<div class="question_body"
+			<p><%= x.body %></p><br>
+		</div>
+
+		<br>
+		<% end %>
+
+		<h3>ANSWERS</h3>
+
+		<% @user.answers.each do |x| %>
+
+		<div class="question_title">
+			<%= erb :"questions/question_title", locals: { x: x.question }, layout: false %>
+		</div>
+		<div class="question_body"
+			<p><%= x.answer %></p><br>
+		</div>
+		<br>
+		<% end %>
+	</div>
+</div>

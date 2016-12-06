@@ -1,6 +1,7 @@
 
 get '/users' do
 	if logged_in?
+		@questions=Question.all
 		erb :"users/index"
 	else
 		@error = "Not logged in"
@@ -10,6 +11,7 @@ end
 
 
 post "/signup" do
+	@questions=Question.all
 	user=User.new(params[:user])
 	if user.save
 		session[:user_id] = user.id
@@ -23,7 +25,9 @@ end
 
 get '/users/profile' do
 	if logged_in?
-		erb :"users/profile"
+		@questions=Question.all
+		@user=current_user
+		erb :"users/show"
 	else
 		@error = "Not logged in"
 		erb :"static/index"
@@ -32,6 +36,7 @@ end
 
 
 get '/users/:id' do
+	@questions=Question.all
 	@user=User.find(params[:id])
 	erb :"users/show"
 end
@@ -46,6 +51,7 @@ end
 post '/login' do
 	user = User.authenticate(params[:user][:email], params[:user][:password])
 	if user
+		@questions=Question.all
 		session[:user_id]=user.id
 		redirect '/' 
 	else
@@ -65,5 +71,6 @@ end
 
 
 get '/login' do
+	@questions=Question.all
 	erb :"static/login"
 end

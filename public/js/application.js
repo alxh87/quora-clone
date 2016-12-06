@@ -12,23 +12,24 @@ $(document).ready(function(){
 				$("#answer-list").prepend(
 
 				"<li> \
-					<form method='post' action='/answer_votes'>\
+				<hr>\
+				Vote count: <span class='label label-info' style='font-size: 16px' id='ansvote_status_"+ response.answer.id + "'>0</span><p> "+ response.answer.answer +"</p>\
+				<div class='btn-group btn-group-xs' role='group' aria-label='...'>\
+					<form class='ansvote-btn' method='post' action='/answer_votes' data-id="+ response.answer.id + ">\
 						<input type='hidden' value=  "+ response.user.id + "  name='answer_vote[user_id]'>\
 						<input type='hidden' value=  "+ response.answer.id+ "  name='answer_vote[answer_id]'>\
 						<input type='hidden' value= 1 name='answer_vote[vote]'>\
-						<input type='submit' class='btn btn-xs btn-success' value='Upvote'>\
+						<button type='submit' class='btn btn-xs btn-success glyphicon glyphicon-plus'></button>\
 					</form>\
-					<form method='post' action='/answer_votes'>\
+					<form class='ansvote-btn' method='post' action='/answer_votes' data-id="+ response.answer.id + ">\
 						<input type='hidden' value=  "+ response.user.id + "  name='answer_vote[user_id]'>\
 						<input type='hidden' value=  "+ response.answer.id+ "  name='answer_vote[answer_id]'>\
 						<input type='hidden' value= -1 name='answer_vote[vote]'>\
-						<input type='submit' class='btn btn-xs btn-warning' value='Downvote'>\
+						<button type='submit' class='btn btn-xs btn-warning glyphicon glyphicon-minus'></button>\
 					</form>\
-						ID: " + response.answer.id + "<br>\
-						Votecount: 0 <br>" +
-						response.answer.answer +"<br>"+
-						response.user.id +" "+response.user.name+
-						"<a href='/answers/"+response.answer.id+"/edit'> EDIT ANSWER</a>"
+					<h4><small><a href='/questions/" + response.user.id + "'>" + response.user.name + "</a></small></h4>\
+						<a href='/answers/" + response.answer.id + "/edit'>EDIT ANSWER</a>\
+						</div>"
 				);
 			}
 		})

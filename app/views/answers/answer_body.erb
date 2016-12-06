@@ -1,8 +1,5 @@
-
-ID: <%= x.id %>
-Votecount: <p><span class="label label-info" id="ansvote_status_<%=x.id%>"><%= x.votecount %></span><span> <%= x.answer %></span></p>
-<h4><small><a href="/questions/<%=x.user%>"><%= x.user.name %></a></small></h4>
+Vote count: <span class="label label-info" style="font-size: 16px" id="ansvote_status_<%=x.id%>"><%= x.votecount %></span><p> <%= x.answer %></p>
+<h4><small><a href="/users/<%=x.user.id%>"><%= x.user.name %></a></small></h4>
 <% if x.user_id==current_user.id %>
 	<a href="/answers/<%=x.id%>/edit">EDIT ANSWER</a>
 <% end %>
-<hr>

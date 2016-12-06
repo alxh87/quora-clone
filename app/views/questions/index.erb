@@ -2,47 +2,29 @@
 <!-- All Questions Page -->
 
 
-
 	<div class="col-xs-3">
-		<h4>Feeds</h4>
-		<table class="table"><td></table>
-		<ul>
-			<li>Top Stories</li>
-			<br>
-			<% 2.times do %>
-				<% x = @questions.sample %>
-				<li><a href="/questions/<%=x.id%>">
-				<%= x.title %></a></li>
-			<% end %>
-			<a href="/questions"><h4>See More...</h4></a>
-		</ul>
+		<%= erb :"static/leftsidebar", layout: false %>
 	</div>
+
 
 <div class="col-xs-7">
 	<div class="col-xs-10">
 	<a href="/questions"><h4>Questions</h4></a>
 	<table class="table"><td></table>
 	<% @questions.each do |x| %>
-			<h4><a href="/questions/<%=x.id%>">
-				<span class="label label-info"><%= x.votecount %></span><%= x.title %></a></h4>
+			<div class="question">
+				<div class="question_title">
+					<%= erb :"questions/question_title", locals: { x: x }, layout: false %>
+						<% if x.user_id==current_user.id %>
+							<a href="/questions/<%=x.id%>/edit">Edit</a>
+							<br>
+							<a href="/questions/<%=x.id%>/delete">Delete</a>
+						<% end %>
+				</div>
+				<div class="question_body"
+					<p><%= x.body %></p><br>
+				</div>
 
-				<form method="post" action="/question_votes">
-					<input type="hidden" value= <%= current_user.id %> name="question_vote[user_id]">
-					<input type="hidden" value= <%= x.id %> name="question_vote[question_id]">
-					<input type="hidden" value= 1 name="question_vote[vote]">
-					<button type="submit" class="label label-success">+</button>
-				</form>
-
-
-				<form method="post" action="/question_votes">
-					<input type="hidden" value= <%= current_user.id %> name="question_vote[user_id]">
-					<input type="hidden" value= <%= x.id %> name="question_vote[question_id]">
-					<input type="hidden" value= -1 name="question_vote[vote]">
-					<button type="submit" class="label label-warning">-</button>
-				</form>
-
-		<h4><span><small><a href="/users/<%=x.user.id%>"><%= x.user.name %></a></small></span></h4>
-		<p><%=x.body%></p>
 	<% end %>
 	</div>
 </div>

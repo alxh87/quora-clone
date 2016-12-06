@@ -5,7 +5,7 @@
 <form id="answer-form" method="post" action="/answer">
 	<input type="hidden" value= <%= current_user.id %> name="answer[user_id]">
 	<input type="hidden" value= <%= @question.id %> name="answer[question_id]">
-	<input type="text" id="answer-box" name="answer[answer]" placeholder="Post Answer">
+	<textarea id="answer-box" class="form-control" name="answer[answer]" placeholder="Post Answer"></textarea>
 	<br>
 	<button type="submit"  class="btn">Answer</button>
 </form>
