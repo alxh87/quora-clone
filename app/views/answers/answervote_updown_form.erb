@@ -1,0 +1,15 @@
+
+<div class="btn-group btn-group-xs" role="group" aria-label="...">
+	<form class="ansvote-btn" method="post" action="/answer_votes" data-id="<%=x.id%>">
+		<input type="hidden" value= <%= current_user.id %> name="answer_vote[user_id]">
+		<input type="hidden" value= <%= x.id %> name="answer_vote[answer_id]">
+		<input type="hidden" value= 1 name="answer_vote[vote]">
+		<button type="submit" class="btn btn-xs btn-success glyphicon glyphicon-plus"></button>
+	</form>
+	<form class="ansvote-btn" method="post" action="/answer_votes" data-id="<%=x.id%>">
+		<input type="hidden" value= <%= current_user.id %> name="answer_vote[user_id]">
+		<input type="hidden" value= <%= x.id %> name="answer_vote[answer_id]">
+		<input type="hidden" value= -1 name="answer_vote[vote]">
+		<button type="submit" class="btn btn-xs btn-warning glyphicon glyphicon-minus"></button>
+	</form>
+</div>
