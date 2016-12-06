@@ -1,13 +1,25 @@
+
+
+
+	<div class="col-xs-3">
+		<%= erb :"static/leftsidebar", layout: false %>
+	</div>
+
+	<div class="col-xs-7">
+
+
 <div class="container">
 <h1>Post a new question</h1>
 
 	<form method="post" action="/questions">
 		<input type="hidden" value= <%= current_user.id %> name="question[user_id]">
-		<input type="text" name="question[title]" placeholder="title">
+		<input type="text" class="form-control" name="question[title]" placeholder="Title">
 		<br>
-		<input type="text" name="question[body]" placeholder="body">
+		<textarea name="question[body]" class="form-control" placeholder=""></textarea>
 		<br>
-		<input type="submit" value="Ask a Question">
+		<button type="submit"  class="btn">Ask a question!</button>
 	</form>
+
+</div>
 
 </div>

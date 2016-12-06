@@ -19,9 +19,9 @@ end
 
 post "/questions" do
 	if logged_in?
-		Question.create(params[:question])
+		@question = Question.create(params[:question])
 		@questions=Question.all
-		erb :"/questions/index"
+		erb :"/questions/show"
 	else
 		erb :"static/login"
 	end	
